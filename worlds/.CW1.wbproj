@@ -7,5 +7,6 @@ maximizedDockId: -1
 centralWidgetVisible: 1
 orthographicViewHeight: 1
 textFiles: 0 "controllers/CW_controller/CW_controller.py" "controllers/CW_controller/robot.py"
+globalOptionalRendering: CameraFrustums
 consoles: Console:All:All
-renderingDevicePerspectives: e-puck:camera;1;1;0;0
+renderingDevicePerspectives: e-puck:camera;1;6.05128;0.0238365;0
