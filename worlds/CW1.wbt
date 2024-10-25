@@ -3,17 +3,79 @@
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/solids/protos/SolidBox.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/gctronic/e-puck/protos/E-puck.proto"
 
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.32412706752855164 0.33766321455599846 0.8836997214161898 1.663413790268607
-  position -0.3531998413315445 -0.4335936192927286 1.8201560363809506
+  orientation -0.29776518711380057 0.18152415612628078 0.9372218915954348 2.304897235860828
+  position 0.9011706631032422 -1.2303540932707278 1.2465822611126414
 }
 TexturedBackground {
+  texture "mars"
 }
 TexturedBackgroundLight {
 }
 RectangleArena {
-  translation -0.261235 1.60116 0
+  floorSize 2 2
+}
+SolidBox {
+  translation -0.525857 -0.472947 0.03
+  size 0.3 0.3 0.1
+  appearance PBRAppearance {
+    baseColor 1 0 0
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+}
+SolidBox {
+  translation -0.525857 0.517053 0.03
+  name "box(1)"
+  size 0.3 0.3 0.1
+  appearance PBRAppearance {
+    baseColor 0 1 0
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+}
+SolidBox {
+  translation 0.454143 0.007053 0.03
+  name "box(2)"
+  size 0.3 0.3 0.1
+  appearance PBRAppearance {
+    baseColor 0 0 1
+    baseColorMap ImageTexture {
+      url [
+        ""
+      ]
+    }
+    roughness 0.5
+    metalness 0
+  }
+}
+E-puck {
+  hidden position_0_0 1440.5780992105251
+  hidden position_0_1 1690.0130932197962
+  hidden linearVelocity_0 0.02420465075449963 -0.0504638756027588 4.418104370365693e-08
+  hidden angularVelocity_0 -0.011736116488050733 -0.005617179575712568 0.08840725768706931
+  hidden rotation_1 0 -1 0 4.554521440779766
+  hidden linearVelocity_1 0.023182391240646895 -0.048333105560774824 -2.6740159395428826e-09
+  hidden angularVelocity_1 2.406812824709226 1.1544556211244013 0.0901319477539547
+  hidden rotation_2 0 0.9999999999999999 0 6.1194308956670715
+  hidden linearVelocity_2 0.025170507453595836 -0.05247761416910883 -3.997882036525836e-08
+  hidden angularVelocity_2 2.6336159749984303 1.2631379479716411 0.09040256038339145
+  translation -0.20100734979916396 -0.16973949931469187 -6.431258368402686e-05
+  rotation -0.00022281048943304248 -0.0005521657625562781 -0.9999998227342126 1.121980944344002
+  controller "CW_controller"
 }
