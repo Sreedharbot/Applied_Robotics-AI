@@ -5,7 +5,6 @@ import time
 
 
 
-
 def counter( a ):
     count = 0
     if a != count:
@@ -27,16 +26,63 @@ def Blue_OBS():
     return 3
 
 
+def pervious_box(a , b , k):
+    
+    old_value = k
+    current_value = a
+    
+    #print (" before loop  old - ", old_value ," current - ",current_value, " b - status - ", b)                 #debugging conditions before entering the if-condition
+
+    
+    if (old_value == 1) and (current_value > old_value) and (b == True):
+        print("Pervious box : RED")
+        b = False
+
+    elif (old_value == 1) and (current_value == old_value) and (b == True):
+        print("Pervious box : RED")
+        b = False
+    
+    elif (old_value == 2) and (current_value < old_value)  and (b == True):
+        print("Pervious box : GREEN")
+        b = False
+
+    elif (old_value == 2) and (current_value > old_value)  and (b == True):
+        print("Pervious box : GREEN")
+        b = False
+    
+    elif (old_value == 2) and (current_value == old_value) and (b == True):
+        print("Pervious box : GREEN")
+        b = False
+    
+    elif (old_value == 3) and (current_value < old_value) and (b == True):
+        print("Pervious box : BLUE")
+        b = False
+    
+    elif (old_value == 3) and (current_value == old_value) and (b == True):
+        print("Pervious box : BLUE")
+        b = False
+
+    old_value  =  current_value
+    
+    #print (" After  loop  old - ", old_value ," current - ",current_value, " b - status - ", b)                   #debugging conditions before entering the if-condition
+    
+    return old_value
+    
+    
+
+    
+
+
 
 def main():
     red = 0
     green = 0
     blue = 0
     
+    k = 0
     c = 0
     a = True
-    value = 0
-    count_box = 0 
+  
 
     range = 0.0
     past_duration = 0
@@ -67,27 +113,27 @@ def main():
         if (red>=200) and (green<100) and (blue<100):
             b = Red_OBS()
             if b == 1 and a == True:
-                count_box = count_box + 1
-                print("Found RED Box - ", a , " " , count_box)
-                value = 1
+                #print("Found RED Box - ", a , " " , b)
+                print("Found RED BOX")
+                k = pervious_box(b , a , k)
                 a = False
 
 
         elif(red<100) and (green>=200) and (blue<100):
             b = Green_OBS()
             if b == 2 and a == True:
-                count_box = count_box + 1
-                print("Found GREEN Box - ", a ," ", count_box)
-                value = 2
+                #print("Found GREEN Box - ", a ," ", b)
+                print("Found GREEN BOX")
+                k = pervious_box(b , a , k)
                 a = False
             
         
         elif(red<100) and (green<100) and (blue>=150):
             b = Blue_OBS()
             if b == 3 and a == True:
-                count_box = count_box + 1
-                print("Found BLUE Box - ", a ," ", count_box)
-                value = 3
+                #print("Found BLUE Box - ", a ," ", b)
+                print("Found BLUE BOX")
+                k = pervious_box(b , a , k)
                 a = False
     
         
@@ -101,6 +147,8 @@ def main():
                     c=0
             else:
                 b = 0
+
+
 
         if robot1.front_obstacles_detected():
             robot1.move_backward()
