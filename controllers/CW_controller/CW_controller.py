@@ -1,6 +1,10 @@
 """ ARAP Webots main file """
 import robot
 import time
+import cv2 as cv
+import numpy as np
+
+
 
 
 
@@ -67,11 +71,23 @@ def pervious_box(a , b , k):
     #print (" After  loop  old - ", old_value ," current - ",current_value, " b - status - ", b)                   #debugging conditions before entering the if-condition
     
     return old_value
-    
-    
 
-    
+def extracting_data_image(image,width,height,intervel):
+    w = width
+    h = height
+    if intervel >= 5:
+        for i in range(width):
+            for j in range (height):
+                value = image[width,height]
+        red = value[2]
+        green = value[1]
+        blue = value[0]
+    else:
+        intervel = 0
 
+    return red, green, blue
+    
+    
 
 
 def main():
@@ -82,6 +98,15 @@ def main():
     k = 0
     c = 0
     a = True
+
+
+    new_width=400
+    new_height=300
+
+    
+    C_color = (150,150,0)
+    C_thickness = 3
+    C_radius = 100
   
 
     range = 0.0
@@ -91,15 +116,48 @@ def main():
     
     
     start_time = time.time()
+
+
+    cam = robot1.robot.getDevice("camera")
+    cam.enable(robot1.time_step)
+
+
     while True: 
+
+        image = cam.getImage()
+        # Convert the raw Webots image to a NumPy array
+        width = cam.getWidth()
+        height = cam.getHeight()
+
+        # Convert the raw byte image to a NumPy array and reshape it
+        img_array = np.frombuffer(image, dtype=np.uint8).reshape((height, width, 4))  # 4 channels: BGRA
+    
         
+        resized_image = cv.resize(img_array,(new_width,new_height))
+
+        Cen_circle = cv.circle(resized_image,(200,150),C_radius,C_color,C_thickness)
+        image_rect = cv.rectangle(Cen_circle,(120,100),(280,200),C_color,C_thickness)
+        croped_img = image_rect[105:195,125:275]
+        Filter_img = cv.resize(croped_img,(new_width,new_height))
+        small_img = cv.resize(Filter_img,(200,100))
+       
+
+        cv.imshow("Complete_View", image_rect)
+        cv.imshow('Filter', small_img) 
+
+        
+
+
         end_time = time.time()
         duration = int(end_time - start_time)
         robot1.reset_actuator_values()
         
         range = robot1.get_sensor_input()
         robot1.blink_leds()
-        red, green, blue = robot1.get_camera_image(5)
+        #red, green, blue = robot1.get_camera_image(5)       #old code with-out OpenCV
+
+        red , green , blue = extracting_data_image(Filter_img,100,100,5)  #updated code with guided fliter       
+        #print(r,",",g,",",bl)
 
 
         if duration > past_duration:
@@ -119,7 +177,7 @@ def main():
                 a = False
 
 
-        elif(red<100) and (green>=200) and (blue<100):
+        elif(red<100) and (green>=170) and (blue<100):
             b = Green_OBS()
             if b == 2 and a == True:
                 #print("Found GREEN Box - ", a ," ", b)
@@ -128,7 +186,7 @@ def main():
                 a = False
             
         
-        elif(red<100) and (green<100) and (blue>=150):
+        elif(red<100) and (green<100) and (blue>=200):
             b = Blue_OBS()
             if b == 3 and a == True:
                 #print("Found BLUE Box - ", a ," ", b)
@@ -157,6 +215,12 @@ def main():
             robot1.run_braitenberg()
         robot1.set_actuators()
         robot1.step()
+
+        if cv.waitKey(1) & 0xFF == ord('q'):
+            break
+
+cv.destroyAllWindows()
+
 
 if __name__ == "__main__":
     main()
