@@ -104,7 +104,7 @@ def main():
     new_height=300
 
     
-    C_color = (150,150,0)
+    C_color = (150,100,20)
     C_thickness = 3
     C_radius = 100
   
@@ -135,6 +135,8 @@ def main():
         
         resized_image = cv.resize(img_array,(new_width,new_height))
 
+        cv.imshow("Original Image", resized_image)
+
         Cen_circle = cv.circle(resized_image,(200,150),C_radius,C_color,C_thickness)
         image_rect = cv.rectangle(Cen_circle,(120,100),(280,200),C_color,C_thickness)
         croped_img = image_rect[105:195,125:275]
@@ -142,6 +144,9 @@ def main():
         small_img = cv.resize(Filter_img,(200,100))
        
 
+        
+        
+        
         cv.imshow("Complete_View", image_rect)
         cv.imshow('Filter', small_img) 
 
