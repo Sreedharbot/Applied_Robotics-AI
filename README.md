@@ -22,6 +22,12 @@ The Task for this assignnment,
        * With webot, use the CNN model to recogonize the image in the webot world.
     ''''
 
+  
+## Webot simulation (Setup)
+![](https://i.pinimg.com/736x/3d/8f/5e/3d8f5e4b2c3f3a9999756bcf9fce6c69.jpg)
+
+
+
 
 # Pre-Requirement:
 
