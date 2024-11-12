@@ -42,4 +42,4 @@ The Task for this assignnment,
 
  # Webot final Result of Part-1
 
- ![](blob:https://in.pinterest.com/ced9b842-cc83-4736-9ce2-74543f57cfb1) 
+ ![](https://in.pinterest.com/ced9b842-cc83-4736-9ce2-74543f57cfb1) 
