@@ -30,7 +30,7 @@ def Blue_OBS():
     return 3
 
 
-def pervious_box(a , b , k):
+def previous_box(a , b , k):
     
     old_value = k
     current_value = a
@@ -39,31 +39,31 @@ def pervious_box(a , b , k):
 
     
     if (old_value == 1) and (current_value > old_value) and (b == True):
-        print("Pervious box : RED")
+        print("Previous box : RED")
         b = False
 
     elif (old_value == 1) and (current_value == old_value) and (b == True):
-        print("Pervious box : RED")
+        print("Previous box : RED")
         b = False
     
     elif (old_value == 2) and (current_value < old_value)  and (b == True):
-        print("Pervious box : GREEN")
+        print("Previous box : GREEN")
         b = False
 
     elif (old_value == 2) and (current_value > old_value)  and (b == True):
-        print("Pervious box : GREEN")
+        print("Previous box : GREEN")
         b = False
     
     elif (old_value == 2) and (current_value == old_value) and (b == True):
-        print("Pervious box : GREEN")
+        print("Previous box : GREEN")
         b = False
     
     elif (old_value == 3) and (current_value < old_value) and (b == True):
-        print("Pervious box : BLUE")
+        print("Previous box : BLUE")
         b = False
     
     elif (old_value == 3) and (current_value == old_value) and (b == True):
-        print("Pervious box : BLUE")
+        print("Previous box : BLUE")
         b = False
 
     old_value  =  current_value
@@ -178,7 +178,7 @@ def main():
             if b == 1 and a == True:
                 #print("Found RED Box - ", a , " " , b)
                 print("Found RED BOX")
-                k = pervious_box(b , a , k)
+                k = previous_box(b , a , k)
                 a = False
 
 
@@ -187,16 +187,16 @@ def main():
             if b == 2 and a == True:
                 #print("Found GREEN Box - ", a ," ", b)
                 print("Found GREEN BOX")
-                k = pervious_box(b , a , k)
+                k = previous_box(b , a , k)
                 a = False
             
         
-        elif(red<100) and (green<100) and (blue>=200):
+        elif(red<70) and (green<70) and (blue>=140):
             b = Blue_OBS()
             if b == 3 and a == True:
                 #print("Found BLUE Box - ", a ," ", b)
                 print("Found BLUE BOX")
-                k = pervious_box(b , a , k)
+                k = previous_box(b , a , k)
                 a = False
     
         
